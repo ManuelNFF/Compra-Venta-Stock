@@ -11,9 +11,9 @@ class Fecha{
         int dia, mes, anio;
     public:
         Fecha(int d=0, int m=0, int a=0){
-            dia=d;
-            mes=m;
             anio=a;
+            mes=m;
+            dia=d;
             if(d!=0){
                 dia=d;mes=m;anio=a;
             }else{
@@ -27,34 +27,13 @@ class Fecha{
             }
 
         }
-
-    bool setDia(int d){
-        if(m==4 || (m==6 || (m==9 || m==11))){
-            if(d>0 && d<=30){
-                dia=d;
-                return true;
-            }
-            else if(m==2){
-                if(a%4=0){
-                    if(d>0 && d<=29)
-                        dia=d;
-                        return true;
-                }
-                else{
-                    if(d>0 && d<=31){
-                        dia=d;
-                        return true;
-                    }
-                }
-            }
-        }
-        if (d>0 && d<=31){
-            dia=d;
+    bool setAnio(int a){
+        if(a>1921 && a<=2022){
+            anio=a;
             return true;
         }
             return false;
-
-    }
+    ;}
 
     bool setMes(int m){
         if(m>0 && m<=12){
@@ -63,15 +42,40 @@ class Fecha{
         }
             return false;
 
-    }
-
-    bool setAnio(int a){
-        if(a>0 && a<=2021){
-            anio=a;
-            return true;
+    ;}
+    bool setDia(int d){
+        if(getMes()==4 || (getMes()==6 || (getMes()==9 || getMes()==11))){
+            if(d>0 && d<=30){
+                dia=d;
+                return true;
+            }
         }
+            else if(getMes()==2){
+                if(getAnio()%4==0 &&(getAnio()%100!=0 &&(getAnio()%400!=0))){
+                    if(d>0 && d<=29){
+                        dia=d;
+                        return true;
+                }
+            }
+            else{
+                if(d>0 && d<=28){
+                    dia=d;
+                    return true;
+                }
+            }
+        }
+                else{
+                    if(d>0 && d<=31){
+                        dia=d;
+                        return true;
+                    }
+                }
+
             return false;
-    }
+
+    ;}
+
+
 
     int getDia(){return dia;}
     int getMes(){return mes;}
@@ -84,21 +88,28 @@ class Fecha{
 
 
  void Fecha::CargarFecha(){
-        int d, m, a;
+        int a, m, d;
         cout<<endl;
+        locate(0,4);
         cout<<"aaaa/mm/aa: ";
+        locate(13,4);
+        cin>>a;
+        locate(17,4);
+        cout<<"/";
+        locate(18,4);
+        cin>>m;
+        locate(20,4);
+        cout<<"/";
+        locate(21,4);
         cin>>d;
-        if(!setDia(d)){ cout<<"EL DIA NO ES VALIDO"<<endl;
+
+        if(!setAnio(a)) {cout<<"EL ANIO NO ES VALIDO"<<endl;
         return;
         }
-        cout<<"Mes: ";
-        cin>>m;
         if(!setMes(m)) {cout<<"EL MES NO ES VALIDO"<<endl;
         return;
         }
-        cout<<"Anio: ";
-        cin>>a;
-        if(!setAnio(a)) {cout<<"EL ANIO NO ES VALIDO"<<endl;
+        if(!setDia(d)){ cout<<"EL DIA NO ES VALIDO"<<endl;
         return;
         }
     }

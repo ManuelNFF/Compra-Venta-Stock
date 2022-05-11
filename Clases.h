@@ -91,16 +91,16 @@ class Fecha{
         int a, m, d;
         cout<<endl;
         locate(0,4);
-        cout<<"aaaa/mm/aa: ";
-        locate(13,4);
+        cout<<"Fecha: ";
+        locate(10,4);
+        cout<<"aaaa/";
+        locate(15,4);
+        cout<<"mm/dd";
+        locate(10,4);
         cin>>a;
-        locate(17,4);
-        cout<<"/";
-        locate(18,4);
+        locate(15,4);
         cin>>m;
-        locate(20,4);
-        cout<<"/";
-        locate(21,4);
+        locate(18,4);
         cin>>d;
 
         if(!setAnio(a)) {cout<<"EL ANIO NO ES VALIDO"<<endl;
